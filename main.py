@@ -1,39 +1,23 @@
-import numpy as np
-import math
+import os
+import subprocess
+from fractal_director_chatbot import main as chatbot_main
 
-def quantum_entanglement_for_recommendations(user_id, content_id):
-  """
-  This function uses quantum entanglement to make personalized recommendations.
+def check_and_install_dependencies():
+    dependencies = ['socket', 'threading', 'chatterbot', 'qiskit', 'numpy', 'scipy', 'networkx']
+    for dep in dependencies:
+        try:
+            __import__(dep)
+        except ImportError:
+            print(f'Installing {dep}...')
+            subprocess.run(['pip', 'install', dep])
 
-  Args:
-    user_id: The user's ID.
-    content_id: The content ID.
+def main():
+    print('Checking and installing necessary dependencies...')
+    check_and_install_dependencies()
+    print('Launching Fractal Director Chatbot...')
+    chatbot_main()
+    print('Server is running...')
+    print('Hello, Admin! Welcome to the Fractal Director Chatbot.')
 
-  Returns:
-    A list of recommended contents.
-  """
-
-  # First, we need to create a quantum state for the user.
-  user_state = np.random.rand(2)
-
-  # Next, we need to create a quantum state for the content.
-  content_state = np.random.rand(2)
-
-  # Now, we need to entangle the user state and the content state.
-  user_content_state = np.kron(user_state, content_state)
-
-  # Finally, we need to measure the user_content_state to get a recommendation.
-  recommendation = np.argmax(user_content_state)
-
-  return recommendation
-
-if __name__ == "__main__":
-  # Get the user ID and content ID.
-  user_id = 12345
-  content_id = 67890
-
-  # Make a recommendation.
-  recommendation = quantum_entanglement_for_recommendations(user_id, content_id)
-
-  # Print the recommendation.
-  print(recommendation)
+if __name__ == '__main__':
+    main()
