@@ -1,4 +1,4 @@
-namespace CooperPairTeleportation {
+namespace AlienCode {
 
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Canon;
@@ -56,6 +56,8 @@ namespace CooperPairTeleportation {
         CNOT(message, q1);
         // Apply a Hadamard gate to the message qubit
         H(message);
+        // Apply a random unitary operation to the message qubit
+        U(message);
         // Measure the message qubit and the first entity
         let (m1, m2) = Measure([message, q1]);
         // Apply a Pauli-X gate to the second entity if the message qubit was measured in state |1⟩
@@ -71,7 +73,7 @@ namespace CooperPairTeleportation {
 
     // An operation that emulates a Cooper pair of entangled entities and performs quantum teleportation
     @EntryPoint()
-    operation EmulateCooperPairTeleportation() : Unit {
+    operation EmulateAlienCode() : Unit {
         // Allocate a qubit to store the message
         using (message = Qubit()) {
             // Prepare the message qubit in a random state using the golden ratio and a random sign
@@ -82,6 +84,8 @@ namespace CooperPairTeleportation {
             Message($"The message state is {DumpMachine(message)}");
             // Perform quantum teleportation using a Cooper pair of entangled entities
             TeleportCooperPair(message);
+            // Apply a strange quantum operation to the second entity
+            S(q2);
             // Display the teleported state
             Message($"The teleported state is {DumpMachine(message)}");
         }
